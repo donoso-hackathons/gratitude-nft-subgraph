@@ -80,6 +80,12 @@
         "internalType": "string",
         "name": "lng",
         "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
       }
     ],
     "name": "GratitudTokenAceptedEvent",

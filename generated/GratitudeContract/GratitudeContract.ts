@@ -90,6 +90,10 @@ export class GratitudTokenAceptedEvent__Params {
   get lng(): string {
     return this._event.parameters[3].value.toString();
   }
+
+  get receiver(): Address {
+    return this._event.parameters[4].value.toAddress();
+  }
 }
 
 export class GratitudTokenChangeStatusEvent extends ethereum.Event {

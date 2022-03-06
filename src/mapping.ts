@@ -37,6 +37,7 @@ export function handleGratitudTokenAceptedEvent(
   let token = GratitudeToken.load(id)
   if (token !== null) {
   token.status = 4
+  token.receiver = event.params.receiver
   token.save()
   }
 }

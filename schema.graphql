@@ -30,13 +30,3 @@ type GratitudeCampaign @entity {
   status: Int!
   campaignUri:String!
 }
-
-
-type Continent @entity {
- id: ID!
- name:String!
- createGratitude:Int!
- receiveGratitude:Int!
- centerLat:String!
-
-}

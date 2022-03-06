@@ -6,9 +6,9 @@ dataSources:
     name: GratitudeContract
     network: mumbai
     source:
-      address: "0x4D2CD687a7e627CF25ECa3Ef2aD937Cf92acf239"
+      address: "0xE1101b6E5c8A53251745af018FA2D3E1BC6676bc"
       abi: GratitudeContract
-      startBlock: 25399700
+      startBlock: 25408945
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -18,9 +18,9 @@ dataSources:
         - GratitudeCampaign
       abis:
         - name: GratitudeContract
-          file: GratitudeContract/abis/GratitudeContract.json
+          file: GratitudeContract\abis\GratitudeContract.json
       eventHandlers:
-        - event: GratitudTokenAceptedEvent(uint256,uint8,string,string)
+        - event: GratitudTokenAceptedEvent(uint256,uint8,string,string,address)
           handler: handleGratitudTokenAceptedEvent
         - event: GratitudTokenChangeStatusEvent(uint256,uint8)
           handler: handleGratitudTokenChangeStatusEvent
@@ -33,4 +33,4 @@ dataSources:
         - event: GratitudeTokenCreationEvent(indexed
             uint256,uint8,address,address,string,string,string)
           handler: handleGratitudeTokenCreationEvent
-      file: GratitudeContract/GratitudeContract.wasm
+      file: GratitudeContract\GratitudeContract.wasm
