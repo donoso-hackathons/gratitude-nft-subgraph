@@ -11,31 +11,32 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class ExampleEntity extends Entity {
+export class GratitudeToken extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
 
-    this.set("count", Value.fromBigInt(BigInt.zero()));
-    this.set("owner", Value.fromBytes(Bytes.empty()));
-    this.set("approved", Value.fromBytes(Bytes.empty()));
+    this.set("status", Value.fromI32(0));
+    this.set("sender", Value.fromBytes(Bytes.empty()));
+    this.set("receiver", Value.fromBytes(Bytes.empty()));
+    this.set("tokenUri", Value.fromString(""));
   }
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save ExampleEntity entity without an ID");
+    assert(id != null, "Cannot save GratitudeToken entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        "Cannot save ExampleEntity entity with non-string ID. " +
+        "Cannot save GratitudeToken entity with non-string ID. " +
           'Considering using .toHex() to convert the "id" to a string.'
       );
-      store.set("ExampleEntity", id.toString(), this);
+      store.set("GratitudeToken", id.toString(), this);
     }
   }
 
-  static load(id: string): ExampleEntity | null {
-    return changetype<ExampleEntity | null>(store.get("ExampleEntity", id));
+  static load(id: string): GratitudeToken | null {
+    return changetype<GratitudeToken | null>(store.get("GratitudeToken", id));
   }
 
   get id(): string {
@@ -47,30 +48,133 @@ export class ExampleEntity extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get count(): BigInt {
-    let value = this.get("count");
-    return value!.toBigInt();
+  get status(): i32 {
+    let value = this.get("status");
+    return value!.toI32();
   }
 
-  set count(value: BigInt) {
-    this.set("count", Value.fromBigInt(value));
+  set status(value: i32) {
+    this.set("status", Value.fromI32(value));
   }
 
-  get owner(): Bytes {
-    let value = this.get("owner");
+  get sender(): Bytes {
+    let value = this.get("sender");
     return value!.toBytes();
   }
 
-  set owner(value: Bytes) {
-    this.set("owner", Value.fromBytes(value));
+  set sender(value: Bytes) {
+    this.set("sender", Value.fromBytes(value));
   }
 
-  get approved(): Bytes {
-    let value = this.get("approved");
+  get receiver(): Bytes {
+    let value = this.get("receiver");
     return value!.toBytes();
   }
 
-  set approved(value: Bytes) {
-    this.set("approved", Value.fromBytes(value));
+  set receiver(value: Bytes) {
+    this.set("receiver", Value.fromBytes(value));
+  }
+
+  get lat(): i32 {
+    let value = this.get("lat");
+    return value!.toI32();
+  }
+
+  set lat(value: i32) {
+    this.set("lat", Value.fromI32(value));
+  }
+
+  get lng(): i32 {
+    let value = this.get("lng");
+    return value!.toI32();
+  }
+
+  set lng(value: i32) {
+    this.set("lng", Value.fromI32(value));
+  }
+
+  get tokenUri(): string {
+    let value = this.get("tokenUri");
+    return value!.toString();
+  }
+
+  set tokenUri(value: string) {
+    this.set("tokenUri", Value.fromString(value));
+  }
+}
+
+export class GratitudeCampaign extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+
+    this.set("campaign_creator", Value.fromBytes(Bytes.empty()));
+    this.set("name", Value.fromString(""));
+    this.set("status", Value.fromI32(0));
+    this.set("campaignUri", Value.fromString(""));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save GratitudeCampaign entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        "Cannot save GratitudeCampaign entity with non-string ID. " +
+          'Considering using .toHex() to convert the "id" to a string.'
+      );
+      store.set("GratitudeCampaign", id.toString(), this);
+    }
+  }
+
+  static load(id: string): GratitudeCampaign | null {
+    return changetype<GratitudeCampaign | null>(
+      store.get("GratitudeCampaign", id)
+    );
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get campaign_creator(): Bytes {
+    let value = this.get("campaign_creator");
+    return value!.toBytes();
+  }
+
+  set campaign_creator(value: Bytes) {
+    this.set("campaign_creator", Value.fromBytes(value));
+  }
+
+  get name(): string {
+    let value = this.get("name");
+    return value!.toString();
+  }
+
+  set name(value: string) {
+    this.set("name", Value.fromString(value));
+  }
+
+  get status(): i32 {
+    let value = this.get("status");
+    return value!.toI32();
+  }
+
+  set status(value: i32) {
+    this.set("status", Value.fromI32(value));
+  }
+
+  get campaignUri(): string {
+    let value = this.get("campaignUri");
+    return value!.toString();
+  }
+
+  set campaignUri(value: string) {
+    this.set("campaignUri", Value.fromString(value));
   }
 }

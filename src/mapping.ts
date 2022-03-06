@@ -12,90 +12,75 @@ import {
   OwnershipTransferred,
   Transfer
 } from "../generated/GratitudeContract/GratitudeContract"
-import { ExampleEntity } from "../generated/schema"
+import { GratitudeCampaign,GratitudeToken } from "../generated/schema"
 
-export function handleApproval(event: Approval): void {
-  // Entities can be loaded from the store using a string ID; this ID
-  // needs to be unique across all entities of the same type
-  let entity = ExampleEntity.load(event.transaction.from.toHex())
 
-  // Entities only exist after they have been saved to the store;
-  // `null` checks allow to create entities on demand
-  if (!entity) {
-    entity = new ExampleEntity(event.transaction.from.toHex())
-
-    // Entity fields can be set using simple assignments
-    entity.count = BigInt.fromI32(0)
-  }
-
-  // BigInt and BigDecimal math are supported
-  entity.count = entity.count + BigInt.fromI32(1)
-
-  // Entity fields can be set based on event parameters
-  entity.owner = event.params.owner
-  entity.approved = event.params.approved
-
-  // Entities can be written to the store with `.save()`
-  entity.save()
-
-  // Note: If a handler doesn't require existing field values, it is faster
-  // _not_ to load the entity from the store. Instead, create it fresh with
-  // `new Entity(...)`, set the fields that should be updated and save the
-  // entity back to the store. Fields that were not set or unset remain
-  // unchanged, allowing for partial updates to be applied.
-
-  // It is also possible to access smart contracts from mappings. For
-  // example, the contract that has emitted the event can be connected to
-  // with:
-  //
-  // let contract = Contract.bind(event.address)
-  //
-  // The following functions can then be called on this contract to access
-  // state variables and other data:
-  //
-  // - contract._campaignIds(...)
-  // - contract._tokenIds(...)
-  // - contract.balanceOf(...)
-  // - contract.getApproved(...)
-  // - contract.getCampaignStatus(...)
-  // - contract.getCreatorTokens(...)
-  // - contract.getGratitudeNFtByLinkCode(...)
-  // - contract.getStatus(...)
-  // - contract.isApprovedForAll(...)
-  // - contract.name(...)
-  // - contract.owner(...)
-  // - contract.ownerOf(...)
-  // - contract.supportsInterface(...)
-  // - contract.symbol(...)
-  // - contract.tokenURI(...)
-}
-
-export function handleApprovalForAll(event: ApprovalForAll): void {}
-
-export function handleGratitudTokenAceptedEvent(
-  event: GratitudTokenAceptedEvent
-): void {}
-
-export function handleGratitudTokenChangeStatusEvent(
-  event: GratitudTokenChangeStatusEvent
-): void {}
-
-export function handleGratitudeCampaignCreatedEvent(
-  event: GratitudeCampaignCreatedEvent
-): void {}
-
-export function handleGratitudeCampaignRejected(
-  event: GratitudeCampaignRejected
-): void {}
-
-export function handleGratitudeCampaignVerified(
-  event: GratitudeCampaignVerified
-): void {}
 
 export function handleGratitudeTokenCreationEvent(
   event: GratitudeTokenCreationEvent
-): void {}
+): void {
+  let token = new GratitudeToken(event.params.tokenId.toHex())
+  token.status = event.params.status
+  token.tokenUri = event.params.tokenUri
+  token.receiver = event.params.receiver
+  token.sender = event.params.sender
+  token.save()
+}
 
-export function handleOwnershipTransferred(event: OwnershipTransferred): void {}
+export function handleGratitudTokenAceptedEvent(
+  event: GratitudTokenAceptedEvent
+): void {
+  let id = event.params.tokenId.toHex()
+  let token = GratitudeToken.load(id)
+  if (token !== null) {
+  token.status = 4
+  token.save()
+  }
+}
 
-export function handleTransfer(event: Transfer): void {}
+export function handleGratitudTokenChangeStatusEvent(
+  event: GratitudTokenChangeStatusEvent
+): void {
+  let id = event.params.tokenId.toHex()
+  let token = GratitudeToken.load(id)
+  if (token !== null) {
+  token.status = token.status
+  token.save()
+  }
+}
+
+export function handleGratitudeCampaignCreatedEvent(
+  event: GratitudeCampaignCreatedEvent
+): void {
+  let campaign = new GratitudeCampaign(event.params.campaignId.toHex())
+  campaign.status = event.params.status
+  campaign.campaignUri = event.params.campaignUri
+  campaign.name = event.params.name
+  campaign.campaign_creator = event.params.campaign_creator
+  campaign.save()
+
+}
+
+export function handleGratitudeCampaignRejected(
+  event: GratitudeCampaignRejected
+): void {
+  let id = event.params.campaignId.toHex()
+  let campaign = GratitudeCampaign.load(id)
+  if (campaign !== null) {
+  campaign.status = 2
+  campaign.save()
+  }
+}
+
+export function handleGratitudeCampaignVerified(
+  event: GratitudeCampaignVerified
+): void {
+  let id = event.params.campaignId.toHex()
+  let campaign = GratitudeCampaign.load(id)
+  if (campaign !== null) {
+  campaign.status = 1
+  campaign.save()
+  }
+}
+
+

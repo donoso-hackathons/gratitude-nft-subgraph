@@ -131,12 +131,20 @@ export class GratitudeCampaignCreatedEvent__Params {
     return this._event.parameters[0].value.toBigInt();
   }
 
+  get campaign_creator(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
   get status(): i32 {
-    return this._event.parameters[1].value.toI32();
+    return this._event.parameters[2].value.toI32();
   }
 
   get campaignUri(): string {
-    return this._event.parameters[2].value.toString();
+    return this._event.parameters[3].value.toString();
+  }
+
+  get name(): string {
+    return this._event.parameters[4].value.toString();
   }
 }
 
@@ -881,8 +889,12 @@ export class CreateCampaignCall__Inputs {
     this._call = call;
   }
 
-  get _campaignUri(): string {
+  get _name(): string {
     return this._call.inputValues[0].value.toString();
+  }
+
+  get _campaignUri(): string {
+    return this._call.inputValues[1].value.toString();
   }
 }
 
