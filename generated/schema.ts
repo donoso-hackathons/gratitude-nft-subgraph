@@ -178,3 +178,77 @@ export class GratitudeCampaign extends Entity {
     this.set("campaignUri", Value.fromString(value));
   }
 }
+
+export class Continent extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+
+    this.set("name", Value.fromString(""));
+    this.set("createGratitude", Value.fromI32(0));
+    this.set("receiveGratitude", Value.fromI32(0));
+    this.set("centerLat", Value.fromString(""));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save Continent entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        "Cannot save Continent entity with non-string ID. " +
+          'Considering using .toHex() to convert the "id" to a string.'
+      );
+      store.set("Continent", id.toString(), this);
+    }
+  }
+
+  static load(id: string): Continent | null {
+    return changetype<Continent | null>(store.get("Continent", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get name(): string {
+    let value = this.get("name");
+    return value!.toString();
+  }
+
+  set name(value: string) {
+    this.set("name", Value.fromString(value));
+  }
+
+  get createGratitude(): i32 {
+    let value = this.get("createGratitude");
+    return value!.toI32();
+  }
+
+  set createGratitude(value: i32) {
+    this.set("createGratitude", Value.fromI32(value));
+  }
+
+  get receiveGratitude(): i32 {
+    let value = this.get("receiveGratitude");
+    return value!.toI32();
+  }
+
+  set receiveGratitude(value: i32) {
+    this.set("receiveGratitude", Value.fromI32(value));
+  }
+
+  get centerLat(): string {
+    let value = this.get("centerLat");
+    return value!.toString();
+  }
+
+  set centerLat(value: string) {
+    this.set("centerLat", Value.fromString(value));
+  }
+}

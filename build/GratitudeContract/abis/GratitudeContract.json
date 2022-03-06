@@ -71,15 +71,15 @@
       },
       {
         "indexed": false,
-        "internalType": "uint256",
+        "internalType": "string",
         "name": "lat",
-        "type": "uint256"
+        "type": "string"
       },
       {
         "indexed": false,
-        "internalType": "uint256",
+        "internalType": "string",
         "name": "lng",
-        "type": "uint256"
+        "type": "string"
       }
     ],
     "name": "GratitudTokenAceptedEvent",
@@ -196,15 +196,15 @@
       },
       {
         "indexed": false,
-        "internalType": "uint256",
+        "internalType": "string",
         "name": "lat",
-        "type": "uint256"
+        "type": "string"
       },
       {
         "indexed": false,
-        "internalType": "uint256",
+        "internalType": "string",
         "name": "lng",
-        "type": "uint256"
+        "type": "string"
       },
       {
         "indexed": false,
@@ -296,14 +296,14 @@
       {
         "components": [
           {
-            "internalType": "uint16",
+            "internalType": "string",
             "name": "lat",
-            "type": "uint16"
+            "type": "string"
           },
           {
-            "internalType": "uint16",
+            "internalType": "string",
             "name": "lng",
-            "type": "uint16"
+            "type": "string"
           }
         ],
         "internalType": "struct GratitudeContract.GEO",
@@ -425,14 +425,14 @@
       {
         "components": [
           {
-            "internalType": "uint16",
+            "internalType": "string",
             "name": "lat",
-            "type": "uint16"
+            "type": "string"
           },
           {
-            "internalType": "uint16",
+            "internalType": "string",
             "name": "lng",
-            "type": "uint16"
+            "type": "string"
           }
         ],
         "internalType": "struct GratitudeContract.GEO",
@@ -520,23 +520,6 @@
             "type": "uint8"
           },
           {
-            "components": [
-              {
-                "internalType": "uint16",
-                "name": "lat",
-                "type": "uint16"
-              },
-              {
-                "internalType": "uint16",
-                "name": "lng",
-                "type": "uint16"
-              }
-            ],
-            "internalType": "struct GratitudeContract.GEO",
-            "name": "geo",
-            "type": "tuple"
-          },
-          {
             "internalType": "uint256",
             "name": "timeStamp",
             "type": "uint256"
@@ -586,23 +569,6 @@
             "internalType": "enum GratitudeContract.NftStatus",
             "name": "status",
             "type": "uint8"
-          },
-          {
-            "components": [
-              {
-                "internalType": "uint16",
-                "name": "lat",
-                "type": "uint16"
-              },
-              {
-                "internalType": "uint16",
-                "name": "lng",
-                "type": "uint16"
-              }
-            ],
-            "internalType": "struct GratitudeContract.GEO",
-            "name": "geo",
-            "type": "tuple"
           },
           {
             "internalType": "uint256",

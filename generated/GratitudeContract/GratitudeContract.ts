@@ -83,12 +83,12 @@ export class GratitudTokenAceptedEvent__Params {
     return this._event.parameters[1].value.toI32();
   }
 
-  get lat(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
+  get lat(): string {
+    return this._event.parameters[2].value.toString();
   }
 
-  get lng(): BigInt {
-    return this._event.parameters[3].value.toBigInt();
+  get lng(): string {
+    return this._event.parameters[3].value.toString();
   }
 }
 
@@ -213,12 +213,12 @@ export class GratitudeTokenCreationEvent__Params {
     return this._event.parameters[3].value.toAddress();
   }
 
-  get lat(): BigInt {
-    return this._event.parameters[4].value.toBigInt();
+  get lat(): string {
+    return this._event.parameters[4].value.toString();
   }
 
-  get lng(): BigInt {
-    return this._event.parameters[5].value.toBigInt();
+  get lng(): string {
+    return this._event.parameters[5].value.toString();
   }
 
   get tokenUri(): string {
@@ -287,32 +287,16 @@ export class GratitudeContract__getCreatorTokensResultValue0Struct extends ether
     return this[2].toI32();
   }
 
-  get geo(): GratitudeContract__getCreatorTokensResultValue0GeoStruct {
-    return changetype<GratitudeContract__getCreatorTokensResultValue0GeoStruct>(
-      this[3].toTuple()
-    );
-  }
-
   get timeStamp(): BigInt {
-    return this[4].toBigInt();
+    return this[3].toBigInt();
   }
 
   get tokenUri(): string {
-    return this[5].toString();
+    return this[4].toString();
   }
 
   get linkCode(): Bytes {
-    return this[6].toBytes();
-  }
-}
-
-export class GratitudeContract__getCreatorTokensResultValue0GeoStruct extends ethereum.Tuple {
-  get lat(): i32 {
-    return this[0].toI32();
-  }
-
-  get lng(): i32 {
-    return this[1].toI32();
+    return this[5].toBytes();
   }
 }
 
@@ -329,32 +313,16 @@ export class GratitudeContract__getGratitudeNFtByLinkCodeResultValue0Struct exte
     return this[2].toI32();
   }
 
-  get geo(): GratitudeContract__getGratitudeNFtByLinkCodeResultValue0GeoStruct {
-    return changetype<
-      GratitudeContract__getGratitudeNFtByLinkCodeResultValue0GeoStruct
-    >(this[3].toTuple());
-  }
-
   get timeStamp(): BigInt {
-    return this[4].toBigInt();
+    return this[3].toBigInt();
   }
 
   get tokenUri(): string {
-    return this[5].toString();
+    return this[4].toString();
   }
 
   get linkCode(): Bytes {
-    return this[6].toBytes();
-  }
-}
-
-export class GratitudeContract__getGratitudeNFtByLinkCodeResultValue0GeoStruct extends ethereum.Tuple {
-  get lat(): i32 {
-    return this[0].toI32();
-  }
-
-  get lng(): i32 {
-    return this[1].toI32();
+    return this[5].toBytes();
   }
 }
 
@@ -461,7 +429,7 @@ export class GratitudeContract extends ethereum.SmartContract {
   > {
     let result = super.call(
       "getCreatorTokens",
-      "getCreatorTokens():((address,uint256,uint8,(uint16,uint16),uint256,string,bytes32)[])",
+      "getCreatorTokens():((address,uint256,uint8,uint256,string,bytes32)[])",
       []
     );
 
@@ -475,7 +443,7 @@ export class GratitudeContract extends ethereum.SmartContract {
   > {
     let result = super.tryCall(
       "getCreatorTokens",
-      "getCreatorTokens():((address,uint256,uint8,(uint16,uint16),uint256,string,bytes32)[])",
+      "getCreatorTokens():((address,uint256,uint8,uint256,string,bytes32)[])",
       []
     );
     if (result.reverted) {
@@ -494,7 +462,7 @@ export class GratitudeContract extends ethereum.SmartContract {
   ): GratitudeContract__getGratitudeNFtByLinkCodeResultValue0Struct {
     let result = super.call(
       "getGratitudeNFtByLinkCode",
-      "getGratitudeNFtByLinkCode(string):((address,uint256,uint8,(uint16,uint16),uint256,string,bytes32))",
+      "getGratitudeNFtByLinkCode(string):((address,uint256,uint8,uint256,string,bytes32))",
       [ethereum.Value.fromString(_linkCode)]
     );
 
@@ -510,7 +478,7 @@ export class GratitudeContract extends ethereum.SmartContract {
   > {
     let result = super.tryCall(
       "getGratitudeNFtByLinkCode",
-      "getGratitudeNFtByLinkCode(string):((address,uint256,uint8,(uint16,uint16),uint256,string,bytes32))",
+      "getGratitudeNFtByLinkCode(string):((address,uint256,uint8,uint256,string,bytes32))",
       [ethereum.Value.fromString(_linkCode)]
     );
     if (result.reverted) {
@@ -739,12 +707,12 @@ export class AcceptLinkHashCall__Outputs {
 }
 
 export class AcceptLinkHashCall_geoStruct extends ethereum.Tuple {
-  get lat(): i32 {
-    return this[0].toI32();
+  get lat(): string {
+    return this[0].toString();
   }
 
-  get lng(): i32 {
-    return this[1].toI32();
+  get lng(): string {
+    return this[1].toString();
   }
 }
 
@@ -959,12 +927,12 @@ export class CreateGratitudeTokenCall__Outputs {
 }
 
 export class CreateGratitudeTokenCall_geoStruct extends ethereum.Tuple {
-  get lat(): i32 {
-    return this[0].toI32();
+  get lat(): string {
+    return this[0].toString();
   }
 
-  get lng(): i32 {
-    return this[1].toI32();
+  get lng(): string {
+    return this[1].toString();
   }
 }
 

@@ -1,4 +1,4 @@
-import { BigInt } from "@graphprotocol/graph-ts"
+import { BigInt, log } from "@graphprotocol/graph-ts"
 import {
   GratitudeContract,
   Approval,
@@ -13,6 +13,9 @@ import {
   Transfer
 } from "../generated/GratitudeContract/GratitudeContract"
 import { GratitudeCampaign,GratitudeToken } from "../generated/schema"
+
+
+
 
 
 
